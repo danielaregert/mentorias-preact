@@ -1,0 +1,61 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prueba con Preact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="app">
+        
+    </div>
+
+    <script type="module">
+      import { render, h } from 'https://esm.sh/preact';
+      import htm from 'https://esm.sh/htm';
+      import Mentor from './Mentor.js'; 
+      const html = htm.bind(h);
+
+      const mentores = [
+        {
+            nombre: "Daniela",
+            edad: 34,
+            imagen: "https://i.pinimg.com/736x/ed/a9/1a/eda91adce8af3a86b74fe2a2e7bbf6f3.jpg",
+            descripcion: "Frontend Developer y leader",
+        },
+        {
+            nombre: "Juan",
+            edad: 40,
+            imagen: "https://s.yimg.com/ny/api/res/1.2/RAGNZd8yfQuLcv_4PgmvWQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTgxNQ--/https://media.zenfs.com/es/business_insider_m_xico_941/8c95d1526d7016a425e689353805fd27",
+            descripcion: "Backend engineer con 10 años de experiencia",
+        },
+        {
+            nombre: "Diego",
+            edad: 29,
+            imagen: "https://external-preview.redd.it/3_9hIPmOuH0gCDCbcAbmz7SPxmEjzWHaNbJJdiHXdBc.jpg?auto=webp&s=eb81d62bfd6d58fda742517c9d98ec2bef314b54",
+            descripcion: "Drupal Developer",
+        },
+        ];
+
+      const App = () => html`
+        <div class="container">
+        <h1 class='text-center mt-5'>Mentorías</h1>
+        <h2 class='h5 mb-3'> Impulsá tu carrera con nuestro equipo de profesionales.</h2>
+        <div class="row g-2">
+            ${mentores.map((mentor) =>
+            html`<${Mentor}
+                nombre=${mentor.nombre}
+                edad=${mentor.edad}
+                imagen=${mentor.imagen}
+                descripcion=${mentor.descripcion}
+            />`
+            )}
+        </div>
+        </div>`;
+
+      render(html`<${App}/>`, document.getElementById('app'));
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  </body>
+</html>
